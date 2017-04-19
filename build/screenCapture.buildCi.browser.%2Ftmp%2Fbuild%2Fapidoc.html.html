@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/bustardcelly/gulp-rev-append#readme"
-
-    >gulp-rev-append (v0.1.8)</a>
+    <a href="https://github.com/bustardcelly/gulp-rev-append#readme">gulp-rev-append (v0.1.8)</a>
 </h1>
 <h4>Cache-busting plugin for gulp.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-rev-append">module gulp-rev-append</a><ol>
 
@@ -99,25 +92,25 @@
     var data, hash;
 
     if(!file) {
-      throw new PluginError(&#x27;gulp-rev-append&#x27;, &#x27;Missing file option for gulp-rev-append.&#x27;);
+      throw new PluginError('gulp-rev-append', 'Missing file option for gulp-rev-append.');
     }
 
     if(!file.contents) {
-      throw new PluginError(&#x27;gulp-rev-append&#x27;, &#x27;Missing file.contents required for modifying files using gulp-rev-append.&#x27;);
+      throw new PluginError('gulp-rev-append', 'Missing file.contents required for modifying files using gulp-rev-append.');
     }
 
     contents = file.contents.toString();
-    lines = contents.split(&#x27;\n&#x27;);
+    lines = contents.split('\n');
     length = lines.length;
 
-    for(i = 0; i &#x3c; length; i++) {
+    for(i = 0; i &lt; length; i++) {
       line = lines[i];
       declarations = line.match(FILE_DECL);
-      if (declarations &#x26;&#x26; declarations.length &#x3e; 0) {
-        for(var j = 0; j &#x3c; declarations.length; j++) {
+      if (declarations &amp;&amp; declarations.length &gt; 0) {
+        for(var j = 0; j &lt; declarations.length; j++) {
           groups = FILE_DECL.exec(declarations[j]);
-          if(groups &#x26;&#x26; groups.length &#x3e; 1) {
-            // are we an &#x22;absoulte path&#x22;? (e.g. /js/app.js)
+          if(groups &amp;&amp; groups.length &gt; 1) {
+            // are we an "absoulte path"? (e.g. /js/app.js)
             var normPath = path.normalize(groups[1]);
             if (normPath.indexOf(path.sep) === 0) {
               dependencyPath = path.join(file.base, normPath);
@@ -128,9 +121,9 @@
 
             try {
               data = fs.readFileSync(dependencyPath);
-              hash = crypto.createHash(&#x27;md5&#x27;);
-              hash.update(data.toString(), &#x27;utf8&#x27;);
-              line = line.replace(groups[2], hash.digest(&#x27;hex&#x27;));
+              hash = crypto.createHash('md5');
+              hash.update(data.toString(), 'utf8');
+              line = line.replace(groups[2], hash.digest('hex'));
             }
             catch(e) {
               // fail silently.
@@ -142,7 +135,7 @@
       }
     }
 
-    file.contents = new Buffer(lines.join(&#x27;\n&#x27;));
+    file.contents = new Buffer(lines.join('\n'));
     cb(null, file);
 
   });
@@ -160,3 +153,4 @@
     ]
 </div>
 </div>
+</body></html>
